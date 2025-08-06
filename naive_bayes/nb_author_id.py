@@ -24,7 +24,25 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 ##############################################################
 # Enter Your Code Here
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
 
+# Create a Naive Bayes classifier instance
+clf = GaussianNB()
+
+# Measure the time to train the classifier
+t0 = time()
+clf.fit(features_train, labels_train)
+print("Training Time:", round(time()-t0, 3), "s")
+
+#Measure the time to predict the labels
+t0 = time()
+pred = clf.predict(features_test)
+print("Predicting Time:", round(time()-t0, 3), "s")
+
+# Calculate the accuracy of the model
+accuracy = accuracy_score(labels_test, pred)
+print("Accuracy:", accuracy)
 
 
 ##############################################################
