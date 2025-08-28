@@ -10,7 +10,7 @@
     
 import sys
 from time import time
-sys.path.append("../tools/")
+sys.path.append(r"D:\machine_learning\ud120-projects\tools")
 from email_preprocess import preprocess
 
 
@@ -22,8 +22,29 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
+# SVM classifier
+from sklearn import svm
+from sklearn.metrics import accuracy_score
+from sklearn.svm import SVC
 
+features_train = features_train[:int(len(features_train)/100)]
+labels_train = labels_train[:int(len(labels_train)/100)]
+# Create classifier
+clf = SVC(kernel='rbf', C= 1.0)
 
+# Train
+t0 = time()
+clf.fit(features_train, labels_train)
+print("Training time:", round(time()-t0, 3), "s")
+
+# Predict
+t1 = time()
+pred = clf.predict(features_test)
+print("Predicting time:", round(time()-t1, 3), "s")
+
+# Calculate accuracy
+acc = accuracy_score(labels_test, pred)
+print("Accuracy:", acc)
 #########################################################
 
 #########################################################
