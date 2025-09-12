@@ -15,21 +15,22 @@
 import os
 import sys
 import joblib
-sys.path.append(os.path.abspath("../tools/"))
+sys.path.append(os.path.abspath(r"D:\machine_learning\ud120-projects\tools"))
 from feature_format import featureFormat, targetFeatureSplit
-dictionary = joblib.load( open("../final_project/final_project_dataset_modified.pkl", "rb") )
+dictionary = joblib.load( open(r"D:\machine_learning\ud120-projects\final_project\final_project_dataset_modified.pkl", "rb") )
 
 
 ### list the features you want to look at--first item in the 
 ### list will be the "target" feature
 features_list = ["bonus", "salary"]
-data = featureFormat( dictionary, features_list, remove_any_zeroes=True, sort_keys = '../tools/python2_lesson06_keys.pkl')
+data = featureFormat( dictionary, features_list, remove_any_zeroes=True,
+                    sort_keys = r'D:\machine_learning\ud120-projects\tools\python2_lesson06_keys.pkl')
 target, features = targetFeatureSplit( data )
 
 ### training-testing split needed in regression, just like classification
 from sklearn.model_selection import train_test_split
 feature_train, feature_test, target_train, target_test = train_test_split(features, target, test_size=0.5, random_state=42)
-train_color = "b"
+train_color = "r"
 test_color = "b"
 
 
