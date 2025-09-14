@@ -11,10 +11,10 @@ def outlierCleaner(predictions, ages, net_worths):
         each tuple is of the form (age, net_worth, error).
     """
     
-    cleaned_data = []
-
     ### your code goes here
-
-    
+    errors = abs(predictions - net_worths)
+    data = list(zip(ages.flatten(), net_worths.flatten(), errors.flatten()))
+    data_sorted = sorted(data, key=lambda x: x[2])
+    limit = int(len(data_sorted) * 0.9)
+    cleaned_data = data_sorted[:limit]
     return cleaned_data
-
